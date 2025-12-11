@@ -20,3 +20,13 @@
 - Полный датасет большой (в исходном скрипте предупреждение ~1.5TB). При частичной загрузке объём зависит от числа сцен и выбранных активов.
 - Исключения для тестовых сплитов прописаны в `exclude_assets` и применяются автоматически.
 
+### Быстрый venv без sudo (Debian/Ubuntu, нет ensurepip)
+- Проблема: `python3 -m venv` ругается на отсутствующий ensurepip, `apt install python3.10-venv` недоступен без sudo.
+- Решение:
+  ```
+  python3 -m venv .venv --without-pip
+  source .venv/bin/activate
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  python get-pip.py
+  rm get-pip.py
+  ```
