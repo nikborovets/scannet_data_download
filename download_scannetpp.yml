@@ -48,6 +48,8 @@ verbose: false
 ###### specify the scenes to download ######
 # select the splits to download
 download_splits: [nvs_sem_train, nvs_sem_val, nvs_test, sem_test, nvs_test_iphone]
+# limit the number of scenes when using splits (set to null to disable)
+scene_limit: 20
 
 # uncomment this and comment above to download data only for specific scenes
 # enter the scene IDs separated by comma
@@ -85,7 +87,7 @@ default_assets: [
 
 # uncomment this and comment the other asset options to specify options based on device or task
 # see below for possible options
-# download_options: []
+download_options: [iphone]
 
 ##############################################################
 ############## Nothing to be changed below this ##############

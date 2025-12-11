@@ -221,6 +221,10 @@ def main(args):
             split_path = Path(cfg.data_root) / "splits" / f"{split}.txt"
             scene_ids += read_txt_list(split_path)
 
+    # optional limit on number of scenes to download (e.g., for quick tests)
+    if cfg.get("scene_limit"):
+        scene_ids = scene_ids[: cfg.scene_limit]
+
     # we know the scene ids, check for 3rd party datasets
     if cfg.get("scannetpp_gs_dir"):
         download_scannetpp_gs(cfg, scene_ids)
