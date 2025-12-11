@@ -11,6 +11,16 @@
    - `download_options: [iphone]` — тянет iPhone RGB/маски/poses/IMU/COLMAP/Nerfstudio + depth.
    - `scene_limit: 20` — берёт первые 20 сцен из выбранных сплитов (можно убрать или изменить).
 3. Запуск: `python download_scannetpp.py download_scannetpp.yml`
+4. Можно не править YAML, а задать переменные окружения:
+   - `SCANNETPP_TOKEN`
+   - `SCANNETPP_DATA_ROOT`
+   (читаются из `.env` автоматически, если файл есть)
+5. Пример: `cp .env.template .env` и отредактируйте значения.
+   Шаблон `.env.template`:
+   ```
+   SCANNETPP_TOKEN=<YOUR_TOKEN_HERE>
+   SCANNETPP_DATA_ROOT=<ABSOLUTE_DOWNLOAD_PATH>
+   ```
 
 ### Настройка под конкретные сцены
 - Если известен список сцен, раскомментируйте `download_scenes` и перечислите ID; закомментируйте `download_splits`/`scene_limit`.

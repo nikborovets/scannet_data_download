@@ -18,6 +18,7 @@ from tqdm import tqdm
 import json
 import os
 import zipfile
+from dotenv import load_dotenv
 
 from scene_release import ScannetppScene_Release
 
@@ -160,6 +161,19 @@ def check_download_file(cfg, url_template, remote_path, local_path, dry_run):
 
 def main(args):
     cfg = load_yaml_munch(args.config_file)
+
+    # load .env if present (overrides via env vars)
+    load_dotenv()
+
+    # allow environment variable overrides (no need to edit YAML for secrets/paths)
+    env_token = os.getenv("SCANNETPP_TOKEN")
+    if env_token:
+        cfg.token = env_token
+        print("Using token from env SCANNETPP_TOKEN")
+    env_data_root = os.getenv("SCANNETPP_DATA_ROOT")
+    if env_data_root:
+        cfg.data_root = env_data_root
+        print("Using data_root from env SCANNETPP_DATA_ROOT")
     # Ask the user to provide the token if not provided
     if cfg.get("token", "<YOUR_TOKEN_HERE>") == "<YOUR_TOKEN_HERE>":
         cfg.token = input("Please enter your download token: ").strip()
